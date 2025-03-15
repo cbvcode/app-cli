@@ -1,20 +1,14 @@
 {
-  "name": "@cbvcode/cli",
-  "version": "1.0.5",
+  "version": "0.1.1",
+  "name": "cbvcode-cli",
   "repository": {
     "type": "git",
     "url": "git@github.com:cbvcode/app-cli.git"
   },
   "author": "cbvdev <cbvcode@gmail.com>",
-  "license": "MIT",
-  "bin": {
-    "cli": "index.js"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
+  "license": "ISC",
+  "bin": "index.js",
   "dependencies": {
-    "@cbvcode/cli": "^1.0.3",
     "commander": "^13.1.0"
   },
   "engines": {
