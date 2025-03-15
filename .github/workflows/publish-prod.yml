@@ -47,23 +47,6 @@ jobs:
         if: steps.check_build.outputs.has_build == 'true'
         run: yarn build
 
-      - name: Get current version
-        id: current_version
-        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
-
-      - name: Check if version exists
-        id: check_version
-        run: |
-          VERSION_EXISTS=$(yarn info @cbvcode/app-cli versions --json | grep -c "${{ steps.current_version.outputs.VERSION }}" || echo "0")
-          echo "::set-output name=EXISTS::$VERSION_EXISTS"
-
-      - name: Update version if needed
-        if: steps.check_version.outputs.EXISTS != '0'
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          npm version patch -m "Bump version to %s [skip ci]"
-
       - name: Setup for publishing
         run: |
           echo '@cbvcode:registry=https://npm.pkg.github.com/ 
@@ -71,6 +54,3 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: yarn publish
-
-      - name: Push version changes
-        run: git push --follow-tags
