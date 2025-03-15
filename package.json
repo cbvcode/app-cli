@@ -1,6 +1,6 @@
 {
   "name": "@cbvcode/app-cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -16,5 +16,12 @@
   },
   "dependencies": {
     "commander": "^13.1.0"
+  },
+  "engines": {
+    "node": "22.x"
+  },
+  "packageManager": "yarn@1.22.22",
+  "volta": {
+    "node": "22.14.0"
   }
 }
