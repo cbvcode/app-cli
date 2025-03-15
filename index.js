@@ -7,6 +7,7 @@ program
   .option('-t, --template <template>', 'Template to use')
   .action((options) => {
     const template = options.template;
+
     if (template === 'app') {
       // execSync('npx create-next-app@latest my-app --example @your-username/your-package-name', { stdio: 'inherit' });
       execSync('npx create-next-app@latest app', { stdio: 'inherit' });
