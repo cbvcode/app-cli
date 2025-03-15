@@ -9,7 +9,7 @@ program
     const template = options.template;
     if (template === 'app') {
       // execSync('npx create-next-app@latest my-app --example @your-username/your-package-name', { stdio: 'inherit' });
-      execSync('npx create-next-app@latest .', { stdio: 'inherit' });
+      execSync('npx create-next-app@latest app', { stdio: 'inherit' });
     } else {
       console.error('Invalid template');
     }
