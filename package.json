@@ -1,6 +1,6 @@
 {
   "name": "@cbvcode/app-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "repository": {
     "type": "git",
@@ -9,7 +9,7 @@
   "author": "cbvdev <cbvcode@gmail.com>",
   "license": "MIT",
   "bin": {
-    "cbvcode": "index.js"
+    "app-cli": "index.js"
   },
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/"
