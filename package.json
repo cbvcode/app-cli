@@ -1,6 +1,6 @@
 {
   "name": "@cbvcode/app-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "index.js",
   "repository": "git@github.com:cbvcode/app-cli.git",
   "author": "cbvdev <cbvcode@gmail.com>",
