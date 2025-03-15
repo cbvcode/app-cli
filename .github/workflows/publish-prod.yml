@@ -55,8 +55,6 @@ jobs:
 
       - name: Publish to GitHub Packages
         run: yarn publish
-        env:
-          PUBLISH_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Push version changes
         run: git push --follow-tags
