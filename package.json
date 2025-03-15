@@ -1,10 +1,6 @@
 {
-  "version": "0.1.2",
+  "version": "0.1.0",
   "name": "cbvcode-cli",
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:cbvcode/app-cli.git"
-  },
   "author": "cbvdev <cbvcode@gmail.com>",
   "license": "ISC",
   "bin": "index.js",
