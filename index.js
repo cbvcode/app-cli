@@ -8,7 +8,7 @@ program
   .action((options) => {
     const template = options.template;
 
-    if (template === 'app') {
+    if (template === 'apps') {
       // execSync('npx create-next-app@latest my-app --example @your-username/your-package-name', { stdio: 'inherit' });
       execSync('npx create-next-app@latest app', { stdio: 'inherit' });
     } else {

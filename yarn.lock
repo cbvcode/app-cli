@@ -2,6 +2,13 @@
 # yarn lockfile v1
 
 
+"@cbvcode/cli@^1.0.3":
+  version "1.0.3"
+  resolved "https://npm.pkg.github.com/download/@cbvcode/cli/1.0.3/9424adcb2df3c512c6f9025c3b9ced866ea07ec0#9424adcb2df3c512c6f9025c3b9ced866ea07ec0"
+  integrity sha512-ZMUjnVWVsU9o3Ezm3AUNKDQRKUZr8Lov0vgVtcRJYl0qIp2VucmmJf9t0RNMvmxijGLqulXxxfBE2CuHxoVy/g==
+  dependencies:
+    commander "^13.1.0"
+
 commander@^13.1.0:
   version "13.1.0"
   resolved "https://registry.yarnpkg.com/commander/-/commander-13.1.0.tgz#776167db68c78f38dcce1f9b8d7b8b9a488abf46"

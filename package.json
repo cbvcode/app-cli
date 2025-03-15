@@ -1,6 +1,6 @@
 {
   "name": "@cbvcode/cli",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "repository": {
     "type": "git",
     "url": "git@github.com:cbvcode/app-cli.git"
@@ -14,6 +14,7 @@
     "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {
+    "@cbvcode/cli": "^1.0.3",
     "commander": "^13.1.0"
   },
   "engines": {
