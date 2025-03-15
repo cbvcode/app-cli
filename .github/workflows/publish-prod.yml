@@ -66,8 +66,8 @@ jobs:
 
       - name: Setup for publishing
         run: |
-          echo "@cbvcode:registry=https://npm.pkg.github.com/" > .npmrc
-          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+          echo '@cbvcode:registry=https://npm.pkg.github.com/ 
+          //npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}' > .npmrc
 
       - name: Publish to GitHub Packages
         run: yarn publish
