@@ -1,0 +1,62 @@
+
+name: publish-prod
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+    types:
+      - closed
+
+jobs:
+  build-and-publish:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.pull_request.merged == true)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://npm.pkg.github.com'
+          scope: '@cbvcode'
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Build
+        run: yarn build --if-present
+
+      - name: Run tests
+        run: yarn test --if-present
+
+      - name: Get current version
+        id: current_version
+        run: echo "::set-output name=VERSION::$(node -p "require('./package.json').version")"
+
+      - name: Check if version exists
+        id: check_version
+        run: |
+          VERSION_EXISTS=$(yarn info @cbvcode/app-cli versions --json | grep -c "${{ steps.current_version.outputs.VERSION }}" || echo "0")
+          echo "::set-output name=EXISTS::$VERSION_EXISTS"
+
+      - name: Update version if needed
+        if: steps.check_version.outputs.EXISTS != '0'
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          npm version patch -m "Bump version to %s [skip ci]"
+
+      - name: Publish to GitHub Packages
+        run: yarn publish
+        env:
+          PUBLISH_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push version changes
+        run: git push --follow-tags
