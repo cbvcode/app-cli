@@ -53,6 +53,15 @@ jobs:
           git config --local user.name "github-actions[bot]"
           npm version patch -m "Bump version to %s [skip ci]"
 
+      - name: Setup .npmrc
+        run: |
+          echo "@cbvcode:registry=https://npm.pkg.github.com/" > .npmrc
+          echo "//npm.pkg.github.com/:_authToken=${{ secrets.GITHUB_TOKEN }}" >> .npmrc
+
+      - name: Publish to GitHub Packages
+        run: yarn publish
+
+
       - name: Publish to GitHub Packages
         run: yarn publish
 
