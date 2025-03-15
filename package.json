@@ -1,8 +1,11 @@
 {
   "name": "@cbvcode/app-cli",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "main": "index.js",
-  "repository": "git@github.com:cbvcode/app-cli.git",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:cbvcode/app-cli.git"
+  },
   "author": "cbvdev <cbvcode@gmail.com>",
   "license": "MIT",
   "bin": {
