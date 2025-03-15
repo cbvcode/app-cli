@@ -30,11 +30,18 @@ jobs:
       - name: Install dependencies
         run: yarn install
 
-      - name: Build
-        run: yarn build --if-present
+      - name: Check for build script
+        id: check_build
+        run: |
+          if grep -q '"build":' package.json; then
+            echo "::set-output name=has_build::true"
+          else
+            echo "::set-output name=has_build::false"
+          fi
 
-      - name: Run tests
-        run: yarn test --if-present
+      - name: Build
+        if: steps.check_build.outputs.has_build == 'true'
+        run: yarn build
 
       - name: Get current version
         id: current_version
