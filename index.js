@@ -42,13 +42,13 @@ async function main() {
   }
 
   if (command === 'init' && template) {
-    prompts.log.info(`The template is selected: ${template}`);
+    prompts.log.info(`Template: ${template}`);
 
     switch (template) {
       case 'next-app':
         prompts.log.info('Initialization Next.js app ...');
 
-        execSync('yarn create next-app app', { stdio: 'inherit' });
+        execSync('yarn create next-app client', { stdio: 'inherit' });
         break;
 
       default:
