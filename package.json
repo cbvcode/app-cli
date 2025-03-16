@@ -1,6 +1,6 @@
 {
   "version": "0.1.8",
-  "name": "cbvcode-cli",
+  "name": "cbvcode-cli-app",
   "author": "cbvdev <cbvcode@gmail.com>",
   "license": "ISC",
   "bin": "index.js",
