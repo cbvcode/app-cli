@@ -3,46 +3,63 @@ import * as prompts from '@clack/prompts';
 import { execSync } from 'child_process';
 
 async function main() {
+  prompts.intro('cbvcode CLI');
+
   const password = await prompts.password({
     message: 'Enter password'
   });
   if (!password || password !== 'pass123') {
     console.error('Authentication error: Incorrect password or password not specified');
+    prompts.outro('Goodbye!');
     return;
   }
 
-  const response = await prompts.group({
-    command: () => prompts.select({
-      message: 'Choose the command',
-      options: [
-        { value: 'init', label: 'Project initialization' }
-      ]
-    }),
-    template: ({ command }) => command === 'init' ? prompts.select({
-        message: 'Choose a project template',
-        options: [
-          { value: 'next-app', label: 'Next.js app' },
-        ]
-      }) : null,
+  const command = await prompts.select({
+    message: 'Choose the command',
+    options: [
+      { value: 'init', label: 'Project initialization' }
+    ]
   });
 
-  if (prompts.isCancel(response.command) || prompts.isCancel(response.template)) {
-    console.log('The operation has been canceled');
+  if (prompts.isCancel(command)) {
+    prompts.outro('The operation has been canceled');
     return;
   }
 
+  let template = null;
 
-  if (response.command === 'init') {
-    switch (response.template) {
+  if (command === 'init') {
+    template = await prompts.select({
+      message: 'Choose a project template',
+      options: [
+        { value: 'next-app', label: 'Next.js app' },
+      ]
+    });
+
+    if (prompts.isCancel(template)) {
+      prompts.outro('The operation has been canceled');
+      return;
+    }
+  }
+
+  if (command === 'init' && template) {
+    console.log(`The template is selected: ${template}`);
+
+    switch (template) {
       case 'next-app':
-        console.log('Ініціалізація Next.js додатка...');
-        execSync('npx create-next-app@latest app', { stdio: 'inherit' });
+        console.log('Initialization Next.js app ...');
+        execSync('yarn create next-app app', { stdio: 'inherit' });
         break;
 
       default:
         console.error('The template is not supported');
     }
   }
+
+  prompts.outro('Done!');
 }
 
-main().catch(console.error);
+main().catch(err => {
+  console.error('An error occurred:', err);
+  process.exit(1);
+});
