@@ -9,8 +9,7 @@ async function main() {
     message: 'Enter password'
   });
   if (!password || password !== 'pass123') {
-    console.error('Authentication error: Incorrect password or password not specified');
-    prompts.outro('Goodbye!');
+    prompts.cancel('Incorrect password. Goodbye!');
     return;
   }
 
@@ -22,7 +21,7 @@ async function main() {
   });
 
   if (prompts.isCancel(command)) {
-    prompts.outro('The operation has been canceled');
+    prompts.cancel('The operation has been canceled');
     return;
   }
 
@@ -37,29 +36,29 @@ async function main() {
     });
 
     if (prompts.isCancel(template)) {
-      prompts.outro('The operation has been canceled');
+      prompts.cancel('The operation has been canceled');
       return;
     }
   }
 
   if (command === 'init' && template) {
-    console.log(`The template is selected: ${template}`);
+    prompts.log.info(`The template is selected: ${template}`);
 
     switch (template) {
       case 'next-app':
-        console.log('Initialization Next.js app ...');
+        prompts.log.info('Initialization Next.js app ...');
+
         execSync('yarn create next-app app', { stdio: 'inherit' });
         break;
 
       default:
-        console.error('The template is not supported');
+        prompts.cancel('The template is not supported');
     }
   }
 
-  prompts.outro('Done!');
+  prompts.log.success('Done!');
 }
 
 main().catch(err => {
-  console.error('An error occurred:', err);
-  process.exit(1);
+  prompts.outro(`An error occurred: ${JSON.stringify(err, null, 2)}`);
 });
