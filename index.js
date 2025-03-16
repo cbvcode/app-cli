@@ -26,9 +26,16 @@ async function main() {
       }) : null,
   });
 
+  if (prompts.isCancel(response.command) || prompts.isCancel(response.template)) {
+    console.log('The operation has been canceled');
+    return;
+  }
+
+
   if (response.command === 'init') {
     switch (response.template) {
       case 'next-app':
+        console.log('Ініціалізація Next.js додатка...');
         execSync('npx create-next-app@latest app', { stdio: 'inherit' });
         break;
 
