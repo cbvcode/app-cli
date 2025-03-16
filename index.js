@@ -48,7 +48,7 @@ async function main() {
       case 'next-app':
         prompts.log.info('Initialization Next.js app ...');
 
-        execSync('yarn create next-app client', { stdio: 'inherit' });
+        execSync('yarn create next-app client --example @cbvcode/app-resource.git', { stdio: 'inherit' });
         break;
 
       default:
